@@ -1,0 +1,7 @@
+{
+  "name": "invernadero",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
