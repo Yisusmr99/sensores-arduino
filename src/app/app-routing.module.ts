@@ -10,9 +10,13 @@ const routes: Routes = [
     path: 'message/:id',
     loadChildren: () => import('./view-message/view-message.module').then( m => m.ViewMessagePageModule)
   },
+  { 
+    path: 'data-sensors', 
+    loadChildren: () => import('./data-sensors/data-sensors.module').then(m => m.DataSensorsPageModule) 
+  },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'data-sensors',
     pathMatch: 'full'
   },
 ];

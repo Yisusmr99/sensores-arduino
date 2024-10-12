@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Datos de Sensores</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ng-container *ngIf="data_sensors.length > 0; else noData">
+    <div class="grid-container">
+      <ion-card *ngFor="let sensor of data_sensors">
+        <ion-card-content>
+          <p><strong>Humedad del suelo:</strong> {{ sensor.humedad_suelo }}</p>
+          <p><strong>Temperatura:</strong> {{ sensor.temperatura }} °C</p>
+          <p><strong>Humedad ambiente:</strong> {{ sensor.humedad_ambiente }} %</p>
+          <p><strong>Bomba activada:</strong> {{ sensor.bomba_activada ? 'Sí' : 'No' }}</p>
+          <p><small>Fecha de creación: {{ sensor.created_at | date:'medium' }}</small></p>
+          <p><small>Última actualización: {{ sensor.updated_at | date:'medium' }}</small></p>
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </ng-container>
+
+  <ng-template #noData>
+    <ion-text color="danger">
+      <h2>No hay datos disponibles</h2>
+    </ion-text>
+  </ng-template>
+</ion-content>

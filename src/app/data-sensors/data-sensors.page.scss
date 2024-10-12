@@ -1,0 +1,29 @@
+ion-card-title {
+    color: #3880ff;
+    /* Color primario de Ionic */
+}
+
+p {
+    font-size: 16px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr); /* 1 columna por defecto */
+    gap: 16px; /* Espacio entre tarjetas */
+    padding: 16px;
+}
+  
+ion-card {
+    width: 100%;
+    margin: 10px 0;
+    border: 1px solid cornflowerblue;
+}
+  
+/* Cambiar a 2 columnas en pantallas más grandes */
+@media (min-width: 768px) {
+    .grid-container {
+        grid-template-columns: repeat(2, 1fr); /* 2 columnas a partir de 768px */
+    }
+}
+  
