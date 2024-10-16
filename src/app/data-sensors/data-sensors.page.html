@@ -9,12 +9,30 @@
     <div class="grid-container">
       <ion-card *ngFor="let sensor of data_sensors">
         <ion-card-content>
-          <p><strong>Humedad del suelo:</strong> {{ sensor.humedad_suelo }}</p>
-          <p><strong>Temperatura:</strong> {{ sensor.temperatura }} °C</p>
-          <p><strong>Humedad ambiente:</strong> {{ sensor.humedad_ambiente }} %</p>
-          <p><strong>Bomba activada:</strong> {{ sensor.bomba_activada ? 'Sí' : 'No' }}</p>
-          <p><small>Fecha de creación: {{ sensor.created_at | date:'medium' }}</small></p>
-          <p><small>Última actualización: {{ sensor.updated_at | date:'medium' }}</small></p>
+          <p>
+            <ion-icon name="water-outline"></ion-icon>
+            <strong> Humedad del suelo:</strong> {{ sensor.humedad_suelo }}
+          </p>
+          <p>
+            <ion-icon name="thermometer-outline"></ion-icon>
+            <strong> Temperatura:</strong> {{ sensor.temperatura }} °C
+          </p>
+          <p>
+            <ion-icon name="cloud-outline"></ion-icon>
+            <strong> Humedad ambiente:</strong> {{ sensor.humedad_ambiente }} %
+          </p>
+          <p>
+            <ion-icon name="flash-outline"></ion-icon>
+            <strong> Bomba activada:</strong> {{ sensor.bomba_activada ? 'Sí' : 'No' }}
+          </p>
+          <p>
+            <ion-icon name="time-outline"></ion-icon>
+            <small> Fecha de creación: {{ sensor.created_at | date:'medium' }}</small>
+          </p>
+          <p>
+            <ion-icon name="time-outline"></ion-icon>
+            <small> Última actualización: {{ sensor.updated_at | date:'medium' }}</small>
+          </p>
         </ion-card-content>
       </ion-card>
     </div>
