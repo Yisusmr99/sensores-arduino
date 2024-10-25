@@ -27,3 +27,8 @@ ion-card {
     }
 }
   
+ion-toolbar {
+    --background: rgb(60, 121, 234);
+    --color: white;  /* Color del texto, si deseas */
+    text-align: center;
+}

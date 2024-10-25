@@ -2,7 +2,6 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SensorsService } from '../services/sensors/sensors.service';
 import { LoadingController, AlertController } from '@ionic/angular';
 import { HttpResponse } from '@angular/common/http';
-import { interval } from 'rxjs';
 
 @Component({
   selector: 'app-data-sensors',
@@ -18,15 +17,14 @@ export class DataSensorsPage implements OnInit, OnDestroy {
     private serviceSensor: SensorsService,
     private loadingController: LoadingController,
     private alertController: AlertController
-  ) { }
+  ) { 
+  }
 
   ngOnInit() {
-    this.getDataSensors();
-
+    this.get_data();
     this.intervalId = setInterval(() => {
-      console.log('Obteniendo datos de los sensores.');
-      this.getDataSensors();
-    },60000); // 5 minutos = 300000 ms
+      this.get_data();
+    },25000); // 5 minutos = 300000 ms
   }
 
   ngOnDestroy(): void {
@@ -78,6 +76,31 @@ export class DataSensorsPage implements OnInit, OnDestroy {
     }).then((alert) => {
       alert.present();
     });
+  }
+
+  async get_data() {
+    let loading = this.loadingController.create({
+      message: 'Cargando informacion...'
+    }); // Crear un loading
+    loading.then(loading => loading.present()); // Mostrar el loading
+    try {
+      const response: any = await this.serviceSensor.get_sensor_test();
+      console.log(response,'response');
+      // Verificar si la respuesta es válida
+      if (response && response.data) {
+        this.data_sensors = response.data || [];
+        // Ordenar los datos por fecha de creación
+        this.data_sensors = this.data_sensors.sort((a: any, b: any) => {
+          return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
+        });
+      } else {
+        this.showAlert('Error: La respuesta no contiene datos válidos.', 'Error');
+      }
+      (await loading).dismiss(); // Ocultar el loading
+    } catch (error: any) {
+      this.showAlert('Ocurrió un error al obtener los datos de los sensores: ' + error.message, 'Error');
+      (await loading).dismiss(); // Ocultar el loading
+    }
   }
 
 }
